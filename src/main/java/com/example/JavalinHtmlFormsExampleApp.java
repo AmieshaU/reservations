@@ -18,7 +18,7 @@ public class JavalinHtmlFormsExampleApp {
         Javalin app = Javalin.create(config -> {
             config.staticFiles.add("/public", Location.CLASSPATH);
         });
-        //app.start(7000);
+        app.start();
         app.post("/make-reservation", ctx -> {
             reservations.put(ctx.formParam("day"), ctx.formParam("time"));
             String text = new description().createDescription(ctx.formParam("day"), ctx.formParam("time"));
@@ -42,9 +42,8 @@ public class JavalinHtmlFormsExampleApp {
             ctx.html("Upload successful");
         });
         
-        app.start();
+     //   app.start();
 
     }
-    app.start(System.getenv("PORT") != null ? Integer.parseInt(System.getenv("PORT")) : 7000);
 
 }
