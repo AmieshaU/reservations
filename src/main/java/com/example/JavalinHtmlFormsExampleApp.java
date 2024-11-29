@@ -18,7 +18,7 @@ public class JavalinHtmlFormsExampleApp {
         Javalin app = Javalin.create(config -> {
             config.staticFiles.add("/public", Location.CLASSPATH);
         });
-        app.start(7000);
+        //app.start(7000);
         app.post("/make-reservation", ctx -> {
             reservations.put(ctx.formParam("day"), ctx.formParam("time"));
             String text = new description().createDescription(ctx.formParam("day"), ctx.formParam("time"));
