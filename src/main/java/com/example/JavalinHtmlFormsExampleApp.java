@@ -1,4 +1,5 @@
 package com.example;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,14 +19,14 @@ public class JavalinHtmlFormsExampleApp {
         Javalin app = Javalin.create(config -> {
             config.staticFiles.add("/public", Location.CLASSPATH);
         });
-        app.start();
+
         app.post("/make-reservation", ctx -> {
             reservations.put(ctx.formParam("day"), ctx.formParam("time"));
             String text = new description().createDescription(ctx.formParam("day"), ctx.formParam("time"));
 
             System.out.println("Text: " + text);
             if (text != null) {
-                ctx.html( text);
+                ctx.html(text);
             } else {
                 ctx.html("No text provided");
             }
@@ -41,9 +42,9 @@ public class JavalinHtmlFormsExampleApp {
             });
             ctx.html("Upload successful");
         });
-        
-     //   app.start();
 
+        // Use the PORT environment variable set by Azure
+        int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "7000"));
+        app.start(port);
     }
-
 }
