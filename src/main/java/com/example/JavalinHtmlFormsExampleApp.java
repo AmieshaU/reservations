@@ -45,5 +45,6 @@ public class JavalinHtmlFormsExampleApp {
         app.start();
 
     }
+    app.start(System.getenv("PORT") != null ? Integer.parseInt(System.getenv("PORT")) : 7000);
 
 }
